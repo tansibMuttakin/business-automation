@@ -27,4 +27,9 @@ RUN chown -R www-data:www-data /var/www
 # Expose port (optional, used for reference)
 EXPOSE 9000
 
-CMD ["php-fpm"]
+# Copy entrypoint script
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Use entrypoint script
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
